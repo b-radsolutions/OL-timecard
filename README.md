@@ -25,29 +25,27 @@ Steps to install on OL systems, loaded on Ubuntu 20.04+ by default
 ```
 $ ls -g /sys/class/timecard/ocp0/
 total 0
--r--r--r--. 1 root 4096 Sep  8 18:20 available_clock_sources
--r--r--r--. 1 root 4096 Sep  8 18:20 available_sma_inputs
--r--r--r--. 1 root 4096 Sep  8 18:20 available_sma_outputs
--rw-r--r--. 1 root 4096 Sep  8 18:20 clock_source
-lrwxrwxrwx. 1 root    0 Sep  8 18:20 device -> ../../../0000:02:00.0
--rw-r--r--. 1 root 4096 Sep  8 18:20 external_pps_cable_delay
--r--r--r--. 1 root 4096 Sep  8 18:20 gnss_sync
--rw-r--r--. 1 root 4096 Sep  8 18:20 internal_pps_cable_delay
--rw-r--r--. 1 root 4096 Sep  8 18:20 irig_b_mode
--rw-r--r--. 1 root 4096 Sep  8 18:20 pci_delay
-drwxr-xr-x. 2 root    0 Sep  8 18:20 power
-lrwxrwxrwx. 1 root    0 Sep  8 18:20 ptp -> ../../ptp/ptp4
--r--r--r--. 1 root 4096 Sep  8 18:20 serialnum
--rw-r--r--. 1 root 4096 Sep  8 18:20 sma1_in
--rw-r--r--. 1 root 4096 Sep  8 18:20 sma2_in
--rw-r--r--. 1 root 4096 Sep  8 21:04 sma3_out
--rw-r--r--. 1 root 4096 Sep  8 21:04 sma4_out
-lrwxrwxrwx. 1 root    0 Sep  8 18:20 subsystem -> ../../../../../../class/timecard
-lrwxrwxrwx. 1 root    0 Sep  8 18:20 ttyGNSS -> ../../tty/ttyS5
-lrwxrwxrwx. 1 root    0 Sep  8 18:20 ttyMAC -> ../../tty/ttyS6
-lrwxrwxrwx. 1 root    0 Sep  8 18:20 ttyNMEA -> ../../tty/ttyS7
--rw-r--r--. 1 root 4096 Sep  8 18:20 uevent
--rw-r--r--. 1 root 4096 Sep  8 18:20 utc_tai_offset
+-r--r--r-- 1 root 4096 Apr  3 18:01 available_sma_inputs
+-r--r--r-- 1 root 4096 Apr  3 18:01 available_sma_outputs
+-rw-r--r-- 1 root 4096 Apr  3 18:01 clock_source
+lrwxrwxrwx 1 root    0 Apr  3 18:01 device -> ../../../0000:e1:00.0
+-rw-r--r-- 1 root  144 Apr  3 18:01 disciplining_config
+lrwxrwxrwx 1 root    0 Apr  3 18:01 i2c -> ../../ocores-i2c.230400/i2c-4
+lrwxrwxrwx 1 root    0 Apr  3 18:01 mro50 -> ../../../../../virtual/misc/mro50.0
+drwxr-xr-x 2 root    0 Apr  3 18:01 power
+lrwxrwxrwx 1 root    0 Apr  3 18:01 pps -> ../../../../../virtual/pps/pps0
+lrwxrwxrwx 1 root    0 Apr  3 18:01 ptp -> ../../ptp/ptp2
+-r--r--r-- 1 root 4096 Apr  3 18:01 serialnum
+-rw-r--r-- 1 root 4096 Apr  3 18:01 sma1
+-rw-r--r-- 1 root 4096 Apr  3 18:01 sma2
+-rw-r--r-- 1 root 4096 Apr  3 18:01 sma3
+-rw-r--r-- 1 root 4096 Apr  3 18:01 sma4
+lrwxrwxrwx 1 root    0 Apr  3 18:01 subsystem -> ../../../../../../class/timecard
+-rw-r--r-- 1 root  368 Apr  3 18:01 temperature_table
+-rw-r--r-- 1 root 4096 Apr  3 18:01 ts_window_adjust
+drwxr-xr-x 2 root    0 Apr  3 18:01 tty
+-rw-r--r-- 1 root 4096 Apr  3 15:25 uevent
+-rw-r--r-- 1 root 4096 Apr  3 18:01 utc_tai_offset
 ```
 
 The main resource directory is accessed through the /sys/class/timecard/ocpN directory, which provides links to the various TimeCard resources.  The device links can easily be used in scripts:
