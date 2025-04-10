@@ -1499,23 +1499,29 @@ fail:
 	goto out;
 }
 
+static int
+ptp_ocp_firstchild(struct device *dev, void *data)
+{
+        return 1;
+}
+
 static struct device *
 ptp_ocp_find_flash(struct ptp_ocp *bp)
 {
-	struct device *dev, *last;
+        struct device *dev, *last;
 
-	last = NULL;
-	dev = &bp->spi_flash->dev;
+        last = NULL;
+        dev = &bp->spi_flash->dev;
 
-	while ((dev = device_find_any_child(dev))) {
-		if (!strcmp("mtd", dev_bus_name(dev)))
-			break;
-		put_device(last);
-		last = dev;
-	}
-	put_device(last);
+        while ((dev = device_find_child(dev, NULL, ptp_ocp_firstchild))) {
+                if (!strcmp("mtd", dev_bus_name(dev)))
+                        break;
+                put_device(last);
+                last = dev;
+        }
+        put_device(last);
 
-	return dev;
+        return dev;
 }
 
 static int
@@ -1650,7 +1656,7 @@ ptp_ocp_devlink_info_get(struct devlink *devlink, struct devlink_info_req *req,
 	char buf[32];
 	int err;
 
-	err = devlink_info_driver_name_put(req, KBUILD_MODNAME);
+	err = 0; //devlink_info_driver_name_put(req, KBUILD_MODNAME);
 	if (err)
 		return err;
 
